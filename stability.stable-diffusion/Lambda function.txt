@@ -1,0 +1,30 @@
+Lambda function
+-modificar el time out desde la configuración, ya que debe acceder a bedrock
+-editar el rol de iam creado, agregar bedrock_full_access y s3 full Access o buscar el s3 q se quiere acceder
+
+API Gateway es un servicio
+-créate rest api
+-créate resource
+-créate method get
+-integration type (lambda function)
+-créate method
+
+-edit method request
+-url query string parámetros
+
+-integration request
+-edit
+-mapping templates
+content type  application/json
+en template body
+{"prompt":"$input.params('prompt')"
+}
+
+
+deploy la lambda function a stage
+
+tomar la dirección de input de la rest api
+del env
+
+
+
