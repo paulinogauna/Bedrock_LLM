@@ -1,0 +1,30 @@
+UPGRADE boto3
+Create a lib folder:
+
+LIB_DIR=boto3-mylayer/python
+mkdir -p $LIB_DIR
+2.    Install the library to LIB_DIR:
+
+pip3 install boto3 -t $LIB_DIR
+3.    Zip all the dependencies to /tmp/boto3-mylayer.zip:
+
+cd boto3-mylayer
+zip -r /tmp/boto3-mylayer.zip .
+4.    Publish the layer:
+
+aws lambda publish-layer-version --layer-name boto3-mylayer --zip-file fileb:///
+
+The command returns the new layer's Amazon Resource Name (ARN).
+
+Example Lambda layer ARN
+
+arn:aws:lambda:region:$ACC_ID:layer:boto3-mylayer:1
+Add the new layer to your Lambda function's configuration
+To add the new layer to your Lambda function's configuration, run the following command:
+
+Important: Replace MY_FUNCTION with your function's name. Replace LAYER_ARN with your layer's ARN.
+
+aws lambda update-function-configuration --function-name MY_FUNCTION --layers LAYER_ARN
+All AWS services and arguments are now available to your Lambda function.
+
+Tip: To confirm the version of Boto3 and Botocore, use print(boto3.__version__) and print(botocore.__version__) in your function code
